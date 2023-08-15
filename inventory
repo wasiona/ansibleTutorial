@@ -1,0 +1,4 @@
+# Type the IPs of the servers you want to manage 
+127.0.0.1
+
+# If you have DNS names for the servers you can also list hostnames 
