@@ -1,5 +1,2 @@
-# Type the IPs of the servers you want to manage 
-#127.0.0.1
-# If you have DNS names for the servers you can also list hostnames 
 192.168.0.31 ansible_user=meowmeow
 192.168.0.28 ansible_user=server2
