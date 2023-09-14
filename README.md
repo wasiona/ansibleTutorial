@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # ansible-tutorial
 
-This is the greatest Ansible file ever written. 
+Exercises and notes from Learn Linux TV Ansible series.  
 =======
 # ansible_tutorial
 >>>>>>> origin/master
