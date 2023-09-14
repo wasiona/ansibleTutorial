@@ -1,0 +1,55 @@
+ ---
+ 
+ - hosts: all
+   become: true
+   pre_tasks:
+
+ 
+   - name: install updates (Ubuntu)
+     tags: always
+     apt:
+#       upgrade: dist   #added to bootstrap.yml script
+       update_cache: yes
+ 
+ - hosts: web_servers
+   become: true
+   tasks:
+
+   - name: install apache2 package (Ubuntu)
+     tags: apache,apache2,ubuntu
+     apt:
+       name:
+         - apache2
+         - libapache2-mod-php
+       state: latest
+
+
+- name: Change e-mail address for admin
+  hosts: all
+  become: true  
+  tasks:
+
+    - name: Change ServerAdmin in httpd.conf
+      lineinfile:
+        path: /etc/apache2/apache2.conf  
+        regexp: '^ServerAdmin'
+        line: ServerAdmin somebody@somewhere.net
+      register: httpd  k
+
+    - name: Restart Apache on Ubuntu
+      service:
+        name: apache2  
+        state: restarted
+      when: httpd.changed  
+
+ 
+ - hosts: db_servers
+   become: true
+   tasks:
+ 
+   - name: install mariadb server
+     tags: db,mariadb,ubuntu
+     apt:
+       name: mariadb-server
+       state: latest
+ 
